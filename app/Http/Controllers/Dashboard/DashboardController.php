@@ -5,19 +5,6 @@ namespace App\Http\Controllers\Dashboard;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
 use App\Auth;
-use App\Dashboard;
-use App\Models\Invoice;
-use App\Models\User;
-use App\Models\InvoiceBatch;
-use App\Models\InvoiceProductClient;
-use App\Models\Client;
-use App\Models\Product;
-use App\Models\StaffTracking;
-use App\Models\WorkOrder;
-use App\Estimates;
-use App\Models\Staff;
-use App\Models\LogActivity;
-use App\Charts\TrafficChart;
 use DB;
 class DashboardController extends BaseController
 {

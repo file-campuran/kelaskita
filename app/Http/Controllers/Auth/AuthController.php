@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Auth;
 
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
-use App\Config;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -29,7 +28,6 @@ class AuthController extends BaseController
     {
         try {
             if (Auth::guard()->attempt($request->only('username', 'password'),  $request->filled('remember'))) {
-                echo "berhasil"; die;
                 return redirect()->intended('/dashboard');
             }
             return redirect()->route('login')->with('error', 'Login Fail, Invalid Email/Password');
