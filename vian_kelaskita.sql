@@ -1,7 +1,7 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : LOCALHOST
+Source Server         : Localhost
 Source Server Version : 50505
 Source Host           : localhost:3306
 Source Database       : vian_kelaskita
@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2021-01-07 16:25:46
+Date: 2021-01-07 20:39:00
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -55,6 +55,29 @@ CREATE TABLE `failed_jobs` (
 -- ----------------------------
 -- Records of failed_jobs
 -- ----------------------------
+
+-- ----------------------------
+-- Table structure for master_jadwalpelajaran
+-- ----------------------------
+DROP TABLE IF EXISTS `master_jadwalpelajaran`;
+CREATE TABLE `master_jadwalpelajaran` (
+  `id` int(6) NOT NULL AUTO_INCREMENT,
+  `nama_kelas` varchar(100) DEFAULT '',
+  `guru` varchar(100) DEFAULT '',
+  `jenjang` varchar(50) DEFAULT '',
+  `kelas` varchar(50) DEFAULT '',
+  `mata_pelajaran` varchar(50) DEFAULT '',
+  `kkm` int(5) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of master_jadwalpelajaran
+-- ----------------------------
+INSERT INTO `master_jadwalpelajaran` VALUES ('1', 'IPS X-Ips-1_MIPA Biologi', 'Erni Wiyanti, S.Pd., M.M.	', 'Kelas X	', 'IPS X-IPS-1', 'IPS Biologi', '75', null);
+INSERT INTO `master_jadwalpelajaran` VALUES ('2', 'MIPA X-MIPA-1_MIPA Fisika', 'Erni Wiyanti, S.Pd., M.M.	', 'Kelas X	', 'MIPA X-MIPA-1	', 'MIPA Fisika	', '75', null);
+INSERT INTO `master_jadwalpelajaran` VALUES ('3', 'MIPA X-MIPA-2_MIPA Fisika', 'Erni Wiyanti, S.Pd., M.M.	', 'Kelas X	', 'MIPA X-MIPA-2	', 'MIPA Fisika	', '75', null);
 
 -- ----------------------------
 -- Table structure for master_jurusan
@@ -268,3 +291,26 @@ INSERT INTO `users` VALUES ('2', 'kepalasekolah@gmail.com', '$2y$10$qAEKTNKaLDIT
 INSERT INTO `users` VALUES ('3', 'kurikulum@gmail.com', '$2y$10$4Hbm/qwaR3eC53sqVoIzleUcXGdiYDqNi36eu8lP7IRFJvJsHwKG6', '', '3', '2021-01-07 13:33:20', '2021-01-07 13:39:18', null, null);
 INSERT INTO `users` VALUES ('4', 'guru@gmail.com', '$2y$10$qfvGoJgS7nXGWJnqAP7wRelIuvtCwonOcwlAEzRqtCZgIgeFx9svK', '', '4', '2021-01-07 13:33:37', '2021-01-07 13:39:21', null, null);
 INSERT INTO `users` VALUES ('5', 'siswa@gmail.com', '$2y$10$k8kbu3WFEa3Kv6WpO5WbE.HVAaMOZYa9FWbiuGaeDazdpMrHiHe2.', '', '5', '2021-01-07 13:33:44', '2021-01-07 13:39:21', null, null);
+
+-- ----------------------------
+-- Table structure for users_detail
+-- ----------------------------
+DROP TABLE IF EXISTS `users_detail`;
+CREATE TABLE `users_detail` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `photo` varchar(200) DEFAULT NULL,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `last_login` timestamp NULL DEFAULT current_timestamp(),
+  `mobile_phone` varchar(20) NOT NULL,
+  `full_address` varchar(255) NOT NULL,
+  `role_id` bigint(20) NOT NULL,
+  `status` int(11) NOT NULL DEFAULT 1 COMMENT '0:not active | 1:active',
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of users_detail
+-- ----------------------------
+INSERT INTO `users_detail` VALUES ('1', null, 'Erni Wiyanti, S.Pd., M.M.', 'guru@gmail.com', '2021-01-07 20:19:19', '081267067094', 'Kepulauan Riau, Batam', '4', '1', null);
