@@ -21,21 +21,9 @@
           <div class="dropdown-body">
             <ul class="profile-nav p-0 pt-3">
               <li class="nav-item">
-                <a href="{{ url('/general/profile') }}" class="nav-link">
+                <a href="{{ url('/profile') }}" class="nav-link">
                   <i data-feather="user"></i>
                   <span>Profile</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="javascript:;" class="nav-link">
-                  <i data-feather="edit"></i>
-                  <span>Edit Profile</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="javascript:;" class="nav-link">
-                  <i data-feather="repeat"></i>
-                  <span>Switch User</span>
                 </a>
               </li>
               <li class="nav-item">
