@@ -6,7 +6,7 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
 use App\Auth;
 use DB;
-class Teacherontroller extends BaseController
+class TeacherController extends BaseController
 {
     public function mapelGet(Request $request){
         return view('pages.teacher.mapel');

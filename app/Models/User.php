@@ -10,7 +10,7 @@ class User extends Authenticatable
 {
     use Notifiable, HasApiTokens;
     //
-    protected $table = 'x_users_login';
+    protected $table = 'users';
     protected $fillable = [
         'username',
         'password',

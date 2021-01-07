@@ -1,15 +1,21 @@
 <?php
 
-namespace App\Http\Controllers\Dashboard;
+namespace App\Http\Middleware;
 
-use Illuminate\Routing\Controller as BaseController;
-use Illuminate\Http\Request;
-use App\Auth;
 use App\Dashboard;
-use DB;
-class DashboardController extends BaseController
+use Closure;
+
+class AddMenuRoles
 {
-    public function dataGet(Request $request){
+    /**
+     * Handle an incoming request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Closure  $next
+     * @return mixed
+     */
+    public function handle($request, Closure $next)
+    {
         $user = $request->user();
         $user_id        = $user->id;
         $role_id        = $user->role_id;
@@ -24,6 +30,7 @@ class DashboardController extends BaseController
             if($menu->status == 2) $parents[] = $menu;
             if($menu->status == 1) $subs[]    = $menu;
         }
+        
         unset($menus);
         if(isset($singles)){
 			foreach($singles as $single){
@@ -35,7 +42,7 @@ class DashboardController extends BaseController
             ];
         	}
         }
-        
+
         foreach($parents as $parent){
             foreach($subs as $sub){
                 if($parent->parent_code == $sub->parent_code){
@@ -57,24 +64,6 @@ class DashboardController extends BaseController
         }
         
         session(['menus' => @$menus]);
-        return view('dashboard');
-    }
-
-    public function reg(){
-        // dd('masuk_reg');
-        $params = [
-            'user' => 'admin@admin.com',
-            'pass' => 'admin',
-            'role' => '1'
-        ];
-        Auth::register($params);
-        return 'ok';
-        // return view('pages/dashboard');
-    }
-
-
-    public function __construct()
-    {
-        $this->middleware('auth');
+        return $next($request);
     }
 }

@@ -1,7 +1,7 @@
 <nav class="sidebar">
   <div class="sidebar-header">
-    <a href="#" class="sidebar-brand">
-      Noble<span>UI</span>
+    <a href="/dashboard" class="sidebar-brand">
+      Kelas<span>KITA</span>
     </a>
     <div class="sidebar-toggler not-active">
       <span></span>
@@ -11,25 +11,19 @@
   </div>
   <div class="sidebar-body">
     <ul class="nav">
-      <li class="nav-item nav-category">Teacher</li>
-      <li class="nav-item {{ active_class(['teacher/matapelajaran']) }}">
-        <a href="{{ url('/teacher/matapelajaran') }}" class="nav-link">
-          <i class="link-icon" data-feather="book"></i>
-          <span class="link-title">Mata Pelajaran</span>
-        </a>
-      </li>
-      <li class="nav-item {{ active_class(['teacher/materi']) }}">
-        <a href="{{ url('/teacher/materi') }}" class="nav-link">
-          <i class="link-icon" data-feather="book-open"></i>
-          <span class="link-title">Materi</span>
-        </a>
-      </li>
-      <li class="nav-item {{ active_class(['teacher/absen']) }}">
-        <a href="{{ url('/teacher/absen') }}" class="nav-link">
-          <i class="link-icon" data-feather="activity"></i>
-          <span class="link-title">Absen</span>
-        </a>
-      </li>
+      @foreach (session('menus') as $menu)
+        @if (count($menu['sub_menu']) > 0)
+          <li class="nav-item nav-category">{{ $menu['parent_name'] }}</li>
+            @foreach ($menu['sub_menu'] as $sub)
+            <li class="nav-item {{ active_class(['/matapelajaran']) }}">
+              <a href="{{ url($sub['sub_code']) }}" class="nav-link">
+                <i class="link-icon" data-feather="{{ $sub['sub_icon'] }}"></i>
+                <span class="link-title">{{ $sub['sub_name'] }}</span>
+              </a>
+            </li>
+            @endforeach
+        @endif    
+      @endforeach
     </ul>
   </div>
 </nav>
