@@ -13,7 +13,6 @@ class DashboardController extends BaseController
         $user = $request->user();
         $user_id        = $user->id;
         $role_id        = $user->role_id;
-
         // get user data
 
         // get menu based on role_id

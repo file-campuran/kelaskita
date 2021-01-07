@@ -18,7 +18,7 @@ Route::group(['middleware' => ['auth', 'addmenuroles']], function () {
     Route::get('/logout', 'Auth\AuthController@logout')->name('logout');
     Route::get('/dashboard', 'Dashboard\DashboardController@dataGet')->name('dashboard');
 
-    Route::get('/matapelajaran', 'Teacher\TeacherController@mapelGet');
-    Route::get('/materi', 'Teacher\TeacherController@materiGet');
-    Route::get('/absen', 'Teacher\TeacherController@absenGet');
+    Route::get('/matapelajaran', 'Teacher\MapelController@mapelGet');
+    Route::get('/materi', 'Teacher\MateriController@materiGet');
+    Route::get('/absen', 'Teacher\AbsenController@absenGet');
 });

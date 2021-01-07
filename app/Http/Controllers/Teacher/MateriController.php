@@ -6,18 +6,10 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
 use App\Auth;
 use DB;
-class TeacherController extends BaseController
+class MateriController extends BaseController
 {
-    public function mapelGet(Request $request){
-        return view('pages.teacher.mapel');
-    }
-
     public function materiGet(Request $request){
         return view('pages.teacher.materi');
-    }
-
-    public function absenGet(Request $request){
-        return view('pages.teacher.absen');
     }
 
 

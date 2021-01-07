@@ -16,10 +16,12 @@
   <div class="col-md-12 grid-margin stretch-card">
     <div class="card">
       <div class="card-body">
-        <h6 class="card-title">Mata Pelajaran</h6>
-        <p class="card-description">
-
-        </p>
+        <div class="d-flex justify-content-between align-items-baseline mb-2">
+          <h6 class="card-title mb-0">Mata Pelajaran</h6>
+          <div class="dropdown mb-2">
+            <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#TambahData">Tambah Data</button>
+          </div>
+        </div>
         <div class="table-responsive">
           <table id="dataTableExample" class="table">
             <thead>
@@ -76,6 +78,54 @@
             </tbody>
           </table>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="TambahData" tabindex="-1" role="dialog" aria-labelledby="TambahDataLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Tambah Kelas Belajar</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="recipient-name">Pilih Kelas:</label>
+            <select name="kelas" class="form-control form-control-sm mb-3">
+              <option selected>Open this select menu</option>
+              <option value="1">One</option>
+              <option value="2">Two</option>
+              <option value="3">Three</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message-text">Pilih Jurusan:</label>
+            <select name="jurusan" class="form-control form-control-sm mb-3">
+              <option selected>Open this select menu</option>
+              <option value="1">One</option>
+              <option value="2">Two</option>
+              <option value="3">Three</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message-text">Pilih Mata Pelajaran:</label>
+            <select name="mata_pelajaran" class="form-control form-control-sm mb-3">
+              <option selected>Open this select menu</option>
+              <option value="1">One</option>
+              <option value="2">Two</option>
+              <option value="3">Three</option>
+            </select>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Send message</button>
       </div>
     </div>
   </div>
