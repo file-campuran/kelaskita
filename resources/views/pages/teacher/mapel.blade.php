@@ -98,34 +98,34 @@
             <label for="recipient-name">Pilih Kelas:</label>
             <select name="kelas" class="form-control form-control-sm mb-3">
               <option selected>Open this select menu</option>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
+              @foreach($showKelas as $value)
+              <option value="{{ $value->id }}">{{ $value->kelas }}</option>
+              @endforeach
             </select>
           </div>
           <div class="form-group">
             <label for="message-text">Pilih Jurusan:</label>
             <select name="jurusan" class="form-control form-control-sm mb-3">
               <option selected>Open this select menu</option>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
+              @foreach($showJurusan as $value)
+              <option value="{{ $value->id }}">{{ $value->jurusan }}</option>
+              @endforeach
             </select>
           </div>
           <div class="form-group">
             <label for="message-text">Pilih Mata Pelajaran:</label>
             <select name="mata_pelajaran" class="form-control form-control-sm mb-3">
               <option selected>Open this select menu</option>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
+              @foreach($showMapel as $value)
+              <option value="{{ $value->id }}">{{ $value->nama_mapel }}</option>
+              @endforeach
             </select>
           </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Send message</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
+        <button type="button" class="btn btn-success">Simpan</button>
       </div>
     </div>
   </div>

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2021-01-07 14:24:23
+Date: 2021-01-07 16:25:46
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -55,6 +55,59 @@ CREATE TABLE `failed_jobs` (
 -- ----------------------------
 -- Records of failed_jobs
 -- ----------------------------
+
+-- ----------------------------
+-- Table structure for master_jurusan
+-- ----------------------------
+DROP TABLE IF EXISTS `master_jurusan`;
+CREATE TABLE `master_jurusan` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `jurusan` varchar(50) DEFAULT '',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of master_jurusan
+-- ----------------------------
+INSERT INTO `master_jurusan` VALUES ('1', 'IPA');
+INSERT INTO `master_jurusan` VALUES ('2', 'IPS');
+
+-- ----------------------------
+-- Table structure for master_kelas
+-- ----------------------------
+DROP TABLE IF EXISTS `master_kelas`;
+CREATE TABLE `master_kelas` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `kelas` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of master_kelas
+-- ----------------------------
+INSERT INTO `master_kelas` VALUES ('1', 'Kelas X');
+INSERT INTO `master_kelas` VALUES ('2', 'Kelas XI');
+INSERT INTO `master_kelas` VALUES ('3', 'Kelas XII');
+
+-- ----------------------------
+-- Table structure for master_mapel
+-- ----------------------------
+DROP TABLE IF EXISTS `master_mapel`;
+CREATE TABLE `master_mapel` (
+  `id` int(6) NOT NULL AUTO_INCREMENT,
+  `kode_mapel` varchar(50) DEFAULT '',
+  `nama_mapel` varchar(200) DEFAULT '',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of master_mapel
+-- ----------------------------
+INSERT INTO `master_mapel` VALUES ('1', '1', 'Bahasa Indonesia');
+INSERT INTO `master_mapel` VALUES ('2', '2', 'Bahasa Inggris');
+INSERT INTO `master_mapel` VALUES ('3', '3', 'Matematika');
+INSERT INTO `master_mapel` VALUES ('4', '4', 'Biologi');
+INSERT INTO `master_mapel` VALUES ('5', '5', 'Fisika');
 
 -- ----------------------------
 -- Table structure for menu
