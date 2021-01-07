@@ -19,6 +19,7 @@ Route::group(['middleware' => ['auth', 'addmenuroles']], function () {
     Route::get('/dashboard', 'Dashboard\DashboardController@dataGet')->name('dashboard');
 
     Route::get('/matapelajaran', 'Teacher\MapelController@mapelGet');
+    Route::get('/matapelajaran/ajax', 'Teacher\MapelController@getDataMapel');
     Route::get('/materi', 'Teacher\MateriController@materiGet');
     Route::get('/absen', 'Teacher\AbsenController@absenGet');
 });

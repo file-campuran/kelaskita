@@ -8,6 +8,7 @@ use App\Auth;
 use App\Models\MasterKelas;
 use App\Models\MasterJurusan;
 use App\Models\MasterMapel;
+use App\Models\MasterJadwalPelajaran;
 use DB;
 class MapelController extends BaseController
 {
@@ -18,6 +19,25 @@ class MapelController extends BaseController
             'showMapel'     => MasterMapel::get(),
         ];
         return view('pages.teacher.mapel')->with($params);
+    }
+
+    public function getDataMapel(Request $request)
+	{
+		$draw   = $request->get('draw');
+		$start  = $request->get('start');
+		$length = $request->get('length');
+		$search = $request->input('search.value');
+
+		$count  = MasterJadwalPelajaran::count();
+		$data   = MasterJadwalPelajaran::get();
+
+		$data = array(
+			'draw'              => $draw,
+			'recordsTotal'      => $count,
+			'recordsFiltered'   => $count,
+			'data'              => $data
+		);
+        echo json_encode($data);
     }
 
 

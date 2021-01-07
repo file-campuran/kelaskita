@@ -20,61 +20,23 @@
           <h6 class="card-title mb-0">Mata Pelajaran</h6>
           <div class="dropdown mb-2">
             <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#TambahData">Tambah Data</button>
+            <button type="button" class="btn btn-outline-danger" onclick="showSwal('passing-parameter-execute-cancel')">Hapus</button>
           </div>
         </div>
         <div class="table-responsive">
-          <table id="dataTableExample" class="table">
+          <table id="dataMapel" class="table">
             <thead>
               <tr>
+                <th>#</th>
                 <th>Nama Kelas</th>
                 <th>Guru</th>
                 <th>Jenjang</th>
                 <th>Kelas</th>
                 <th>Mata Pelajaran</th>
                 <th>KKM</th>
-                <th>Aksi</th>
               </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>IPS X-Ips-1_MIPA Biologi</td>
-                <td>Erni Wiyanti, S.Pd., M.M.</td>
-                <td>Kelas X	</td>
-                <td>IPS X-IPS-1	</td>
-                <td>MIPA Biologi	</td>
-                <td>75</td>
-                <td>
-                  <button type="button" class="btn btn-danger btn-icon">
-                    <i data-feather="trash"></i>
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>MIPA X-MIPA-1_MIPA Fisika	</td>
-                <td>Erni Wiyanti, S.Pd., M.M.</td>
-                <td>Kelas X	</td>
-                <td>MIPA X-MIPA-1	</td>
-                <td>MIPA Fisika	</td>
-                <td>75</td>
-                <td>
-                  <button type="button" class="btn btn-danger btn-icon">
-                    <i data-feather="trash"></i>
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>MIPA X-MIPA-2_MIPA Fisika	</td>
-                <td>Erni Wiyanti, S.Pd., M.M.</td>
-                <td>Kelas X	</td>
-                <td>MIPA X-MIPA-2	</td>
-                <td>MIPA Fisika	</td>
-                <td>75</td>
-                <td>
-                  <button type="button" class="btn btn-danger btn-icon">
-                    <i data-feather="trash"></i>
-                  </button>
-                </td>
-              </tr>
             </tbody>
           </table>
         </div>
@@ -139,4 +101,49 @@
 
 @push('custom-scripts')
   <script src="{{ asset('assets/js/data-table.js') }}"></script>
+
+  <script>
+    $(function() {
+    var table = $('#dataMapel').DataTable({
+        paging: true,
+        processing: false,
+        serverSide: false,
+        select: true,
+        ajax: function(data, callback){
+            $.ajax({
+                url: '{{ url('/')}}/matapelajaran/ajax',
+                'data': {
+                    ...data,
+                },
+                dataType: 'json',
+                beforeSend: function(){
+                // Here, manually add the loading message.
+                $('#ContactList > tbody').html(
+                    '<tr class="odd">' +
+                    '<td valign="top" colspan="7" class="dataTables_empty"><i class="fa fa-spinner fa-spin fa-2x fa-fw"></i></td>' +
+                    '</tr>'
+                );
+                },
+                success: function(res){
+                callback(res);
+                }
+            })
+        },
+        columns: [
+            { data: null, mRender: function(data, type, full) {
+                return `<input type="checkbox" class="checkbox" id="" value="${data.id}">`
+            }},
+            { data: 'nama_kelas', name: 'Nama Kelas' },
+            { data: 'guru', name: 'Guru' },
+            { data: 'jenjang', name: 'Jenjang'},
+            { data: 'kelas', name: 'Kelas'},
+            { data: 'mata_pelajaran', name: 'Mata Pelajaran'},
+            { data: 'kkm', name: 'KKM'},               
+        ],
+        language: {
+                loadingRecords: "&nbsp;",
+                processing: 'Loading...'},
+        })        
+    });
+</script>
 @endpush
