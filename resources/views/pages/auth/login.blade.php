@@ -14,7 +14,7 @@
           </div>
           <div class="col-md-8 pl-md-0">
             <div class="auth-form-wrapper px-4 py-5">
-              <a href="#" class="noble-ui-logo d-block mb-2">Login Kelas Belajar</span></a>
+              <a href="#" class="noble-ui-logo d-block mb-2">Login KelasKITA</span></a>
               <h5 class="text-muted font-weight-normal mb-4">Welcome back! Log in to your account.</h5>
               @if (session('error') != '')
                 <div class="alert alert-danger" role="alert">
