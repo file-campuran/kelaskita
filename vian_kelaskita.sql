@@ -1,7 +1,7 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : LOCALHOST
+Source Server         : Localhost
 Source Server Version : 50505
 Source Host           : localhost:3306
 Source Database       : vian_kelaskita
@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2021-01-09 09:51:54
+Date: 2021-01-11 14:40:15
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -168,6 +168,47 @@ INSERT INTO `menu` VALUES ('9', 'Kurikulum', 'kurikulum', 'Kurikulum', '2', null
 INSERT INTO `menu` VALUES ('10', 'Kurikulum', 'kurikulumm', 'Menu Kurikulum', '1', 'book', '1', '2021-01-07 13:41:11', '2021-01-07 13:48:41', null);
 
 -- ----------------------------
+-- Table structure for menu_kelas
+-- ----------------------------
+DROP TABLE IF EXISTS `menu_kelas`;
+CREATE TABLE `menu_kelas` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `parent_code` varchar(255) DEFAULT NULL,
+  `code` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `status` int(11) NOT NULL DEFAULT 1 COMMENT '0:nonactive,  1:active-child-dropdown, 2:active-parent-dropdown, 3:single',
+  `icon` varchar(255) DEFAULT NULL,
+  `reorder` int(11) NOT NULL DEFAULT 1,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `code` (`code`),
+  KEY `name` (`name`),
+  KEY `status` (`status`)
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of menu_kelas
+-- ----------------------------
+INSERT INTO `menu_kelas` VALUES ('1', 'Kelas', '/kelas', 'Kelas', '2', null, '1', '2021-01-11 13:54:05', '2021-01-11 13:58:19', null);
+INSERT INTO `menu_kelas` VALUES ('2', 'Kelas', '/chat', 'Chat', '1', 'message-square', '1', '2021-01-11 13:54:05', '2021-01-11 13:58:00', null);
+INSERT INTO `menu_kelas` VALUES ('3', 'Kelas', '/video_conference', 'Video Conference', '1', 'video', '2', '2021-01-11 13:54:05', '2021-01-11 13:58:48', null);
+INSERT INTO `menu_kelas` VALUES ('4', 'Kelas', '/absensi_kelas', 'Absensi Kelas', '1', 'users', '3', '2021-01-11 13:54:05', '2021-01-11 14:00:12', null);
+INSERT INTO `menu_kelas` VALUES ('5', 'Kelas', '/kompetensi_dasar', 'Kompetensi Dasar', '1', 'calendar', '4', '2021-01-11 13:54:05', '2021-01-11 14:02:52', null);
+INSERT INTO `menu_kelas` VALUES ('6', 'Kelas', '/rpp', 'RPP', '1', 'align-right', '5', '2021-01-11 13:54:05', '2021-01-11 14:02:26', null);
+INSERT INTO `menu_kelas` VALUES ('7', 'Kelas', '/kejadian_jurnal', 'Kejadian / Jurnal', '1', 'book', '6', '2021-01-11 13:54:05', '2021-01-11 14:02:35', null);
+INSERT INTO `menu_kelas` VALUES ('8', 'Kelas', '/materi_bahan_ajar', 'Materi / Bahan Ajar', '1', 'book', '7', '2021-01-11 13:54:05', '2021-01-11 14:02:37', null);
+INSERT INTO `menu_kelas` VALUES ('9', 'Kelas', '/daftar_siswa_kelas', 'Daftar Siswa Kelas', '1', 'users', '8', '2021-01-11 13:54:05', '2021-01-11 14:03:03', null);
+INSERT INTO `menu_kelas` VALUES ('10', 'Kelas', '/cbt', 'CBT', '1', 'airplay', '9', '2021-01-11 13:54:05', '2021-01-11 14:03:22', null);
+INSERT INTO `menu_kelas` VALUES ('11', 'Kelas', '/penilaian_kd3', 'Penilaian KD 3', '1', 'file-text', '10', '2021-01-11 13:54:05', '2021-01-11 14:03:38', null);
+INSERT INTO `menu_kelas` VALUES ('12', 'Kelas', '/penilaian_kd4', 'Penilaian KD 4', '1', 'file-text', '11', '2021-01-11 13:54:05', '2021-01-11 14:03:38', null);
+INSERT INTO `menu_kelas` VALUES ('13', 'Kelas', '/penilaian_semester', 'Penilaian Semester', '1', 'file-text', '12', '2021-01-11 13:54:05', '2021-01-11 14:03:40', null);
+INSERT INTO `menu_kelas` VALUES ('14', 'Kelas', '/rekap_rapor', 'Rekap Rapor', '1', 'file-text', '13', '2021-01-11 13:54:05', '2021-01-11 14:03:42', null);
+INSERT INTO `menu_kelas` VALUES ('15', 'Kelas', '/monitor_aktifitas', 'Monitor Aktifitas', '1', 'radio', '14', '2021-01-11 13:54:05', '2021-01-11 14:03:50', null);
+INSERT INTO `menu_kelas` VALUES ('16', 'Kelas', '/pengaturan_kelas', 'Pengaturan Kelas', '1', 'settings', '15', '2021-01-11 13:54:05', '2021-01-11 14:03:55', null);
+
+-- ----------------------------
 -- Table structure for menu_role
 -- ----------------------------
 DROP TABLE IF EXISTS `menu_role`;
@@ -206,6 +247,106 @@ INSERT INTO `menu_role` VALUES ('17', '1', '4', '2021-01-07 13:46:40', '2021-01-
 INSERT INTO `menu_role` VALUES ('18', '2', '4', '2021-01-07 13:46:40', '2021-01-07 13:46:40', null);
 INSERT INTO `menu_role` VALUES ('19', '3', '4', '2021-01-07 13:46:40', '2021-01-07 13:46:40', null);
 INSERT INTO `menu_role` VALUES ('20', '4', '4', '2021-01-07 13:46:40', '2021-01-07 13:46:40', null);
+
+-- ----------------------------
+-- Table structure for menu_role_kelas
+-- ----------------------------
+DROP TABLE IF EXISTS `menu_role_kelas`;
+CREATE TABLE `menu_role_kelas` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `menu_id` bigint(20) NOT NULL,
+  `role_id` bigint(20) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `deleted_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
+  PRIMARY KEY (`id`),
+  KEY `menu_id` (`menu_id`),
+  KEY `role_id` (`role_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=81 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of menu_role_kelas
+-- ----------------------------
+INSERT INTO `menu_role_kelas` VALUES ('1', '1', '1', '2021-01-11 13:54:19', '2021-01-11 13:54:19', null);
+INSERT INTO `menu_role_kelas` VALUES ('2', '2', '1', '2021-01-11 13:54:19', '2021-01-11 13:54:19', null);
+INSERT INTO `menu_role_kelas` VALUES ('3', '3', '1', '2021-01-11 13:54:19', '2021-01-11 13:54:19', null);
+INSERT INTO `menu_role_kelas` VALUES ('4', '4', '1', '2021-01-11 13:54:19', '2021-01-11 13:54:19', null);
+INSERT INTO `menu_role_kelas` VALUES ('5', '5', '1', '2021-01-11 13:54:19', '2021-01-11 13:54:19', null);
+INSERT INTO `menu_role_kelas` VALUES ('6', '6', '1', '2021-01-11 13:54:19', '2021-01-11 13:54:19', null);
+INSERT INTO `menu_role_kelas` VALUES ('7', '7', '1', '2021-01-11 13:54:19', '2021-01-11 13:54:19', null);
+INSERT INTO `menu_role_kelas` VALUES ('8', '8', '1', '2021-01-11 13:54:19', '2021-01-11 13:54:19', null);
+INSERT INTO `menu_role_kelas` VALUES ('9', '9', '1', '2021-01-11 13:54:19', '2021-01-11 13:54:19', null);
+INSERT INTO `menu_role_kelas` VALUES ('10', '10', '1', '2021-01-11 13:54:19', '2021-01-11 13:54:19', null);
+INSERT INTO `menu_role_kelas` VALUES ('11', '11', '1', '2021-01-11 13:54:19', '2021-01-11 13:54:19', null);
+INSERT INTO `menu_role_kelas` VALUES ('12', '12', '1', '2021-01-11 13:54:19', '2021-01-11 13:54:19', null);
+INSERT INTO `menu_role_kelas` VALUES ('13', '13', '1', '2021-01-11 13:54:20', '2021-01-11 13:54:20', null);
+INSERT INTO `menu_role_kelas` VALUES ('14', '14', '1', '2021-01-11 13:54:20', '2021-01-11 13:54:20', null);
+INSERT INTO `menu_role_kelas` VALUES ('15', '15', '1', '2021-01-11 13:54:20', '2021-01-11 13:54:20', null);
+INSERT INTO `menu_role_kelas` VALUES ('16', '16', '1', '2021-01-11 13:54:20', '2021-01-11 13:54:20', null);
+INSERT INTO `menu_role_kelas` VALUES ('17', '1', '2', '2021-01-11 13:54:27', '2021-01-11 13:54:27', null);
+INSERT INTO `menu_role_kelas` VALUES ('18', '2', '2', '2021-01-11 13:54:27', '2021-01-11 13:54:27', null);
+INSERT INTO `menu_role_kelas` VALUES ('19', '3', '2', '2021-01-11 13:54:27', '2021-01-11 13:54:27', null);
+INSERT INTO `menu_role_kelas` VALUES ('20', '4', '2', '2021-01-11 13:54:27', '2021-01-11 13:54:27', null);
+INSERT INTO `menu_role_kelas` VALUES ('21', '5', '2', '2021-01-11 13:54:27', '2021-01-11 13:54:27', null);
+INSERT INTO `menu_role_kelas` VALUES ('22', '6', '2', '2021-01-11 13:54:27', '2021-01-11 13:54:27', null);
+INSERT INTO `menu_role_kelas` VALUES ('23', '7', '2', '2021-01-11 13:54:27', '2021-01-11 13:54:27', null);
+INSERT INTO `menu_role_kelas` VALUES ('24', '8', '2', '2021-01-11 13:54:27', '2021-01-11 13:54:27', null);
+INSERT INTO `menu_role_kelas` VALUES ('25', '9', '2', '2021-01-11 13:54:27', '2021-01-11 13:54:27', null);
+INSERT INTO `menu_role_kelas` VALUES ('26', '10', '2', '2021-01-11 13:54:27', '2021-01-11 13:54:27', null);
+INSERT INTO `menu_role_kelas` VALUES ('27', '11', '2', '2021-01-11 13:54:27', '2021-01-11 13:54:27', null);
+INSERT INTO `menu_role_kelas` VALUES ('28', '12', '2', '2021-01-11 13:54:27', '2021-01-11 13:54:27', null);
+INSERT INTO `menu_role_kelas` VALUES ('29', '13', '2', '2021-01-11 13:54:27', '2021-01-11 13:54:27', null);
+INSERT INTO `menu_role_kelas` VALUES ('30', '14', '2', '2021-01-11 13:54:27', '2021-01-11 13:54:27', null);
+INSERT INTO `menu_role_kelas` VALUES ('31', '15', '2', '2021-01-11 13:54:27', '2021-01-11 13:54:27', null);
+INSERT INTO `menu_role_kelas` VALUES ('32', '16', '2', '2021-01-11 13:54:27', '2021-01-11 13:54:27', null);
+INSERT INTO `menu_role_kelas` VALUES ('33', '1', '3', '2021-01-11 13:54:35', '2021-01-11 13:54:35', null);
+INSERT INTO `menu_role_kelas` VALUES ('34', '2', '3', '2021-01-11 13:54:35', '2021-01-11 13:54:35', null);
+INSERT INTO `menu_role_kelas` VALUES ('35', '3', '3', '2021-01-11 13:54:35', '2021-01-11 13:54:35', null);
+INSERT INTO `menu_role_kelas` VALUES ('36', '4', '3', '2021-01-11 13:54:35', '2021-01-11 13:54:35', null);
+INSERT INTO `menu_role_kelas` VALUES ('37', '5', '3', '2021-01-11 13:54:35', '2021-01-11 13:54:35', null);
+INSERT INTO `menu_role_kelas` VALUES ('38', '6', '3', '2021-01-11 13:54:35', '2021-01-11 13:54:35', null);
+INSERT INTO `menu_role_kelas` VALUES ('39', '7', '3', '2021-01-11 13:54:35', '2021-01-11 13:54:35', null);
+INSERT INTO `menu_role_kelas` VALUES ('40', '8', '3', '2021-01-11 13:54:35', '2021-01-11 13:54:35', null);
+INSERT INTO `menu_role_kelas` VALUES ('41', '9', '3', '2021-01-11 13:54:35', '2021-01-11 13:54:35', null);
+INSERT INTO `menu_role_kelas` VALUES ('42', '10', '3', '2021-01-11 13:54:35', '2021-01-11 13:54:35', null);
+INSERT INTO `menu_role_kelas` VALUES ('43', '11', '3', '2021-01-11 13:54:35', '2021-01-11 13:54:35', null);
+INSERT INTO `menu_role_kelas` VALUES ('44', '12', '3', '2021-01-11 13:54:35', '2021-01-11 13:54:35', null);
+INSERT INTO `menu_role_kelas` VALUES ('45', '13', '3', '2021-01-11 13:54:35', '2021-01-11 13:54:35', null);
+INSERT INTO `menu_role_kelas` VALUES ('46', '14', '3', '2021-01-11 13:54:35', '2021-01-11 13:54:35', null);
+INSERT INTO `menu_role_kelas` VALUES ('47', '15', '3', '2021-01-11 13:54:35', '2021-01-11 13:54:35', null);
+INSERT INTO `menu_role_kelas` VALUES ('48', '16', '3', '2021-01-11 13:54:35', '2021-01-11 13:54:35', null);
+INSERT INTO `menu_role_kelas` VALUES ('49', '1', '4', '2021-01-11 13:54:43', '2021-01-11 13:54:43', null);
+INSERT INTO `menu_role_kelas` VALUES ('50', '2', '4', '2021-01-11 13:54:43', '2021-01-11 13:54:43', null);
+INSERT INTO `menu_role_kelas` VALUES ('51', '3', '4', '2021-01-11 13:54:43', '2021-01-11 13:54:43', null);
+INSERT INTO `menu_role_kelas` VALUES ('52', '4', '4', '2021-01-11 13:54:43', '2021-01-11 13:54:43', null);
+INSERT INTO `menu_role_kelas` VALUES ('53', '5', '4', '2021-01-11 13:54:43', '2021-01-11 13:54:43', null);
+INSERT INTO `menu_role_kelas` VALUES ('54', '6', '4', '2021-01-11 13:54:43', '2021-01-11 13:54:43', null);
+INSERT INTO `menu_role_kelas` VALUES ('55', '7', '4', '2021-01-11 13:54:43', '2021-01-11 13:54:43', null);
+INSERT INTO `menu_role_kelas` VALUES ('56', '8', '4', '2021-01-11 13:54:43', '2021-01-11 13:54:43', null);
+INSERT INTO `menu_role_kelas` VALUES ('57', '9', '4', '2021-01-11 13:54:43', '2021-01-11 13:54:43', null);
+INSERT INTO `menu_role_kelas` VALUES ('58', '10', '4', '2021-01-11 13:54:43', '2021-01-11 13:54:43', null);
+INSERT INTO `menu_role_kelas` VALUES ('59', '11', '4', '2021-01-11 13:54:43', '2021-01-11 13:54:43', null);
+INSERT INTO `menu_role_kelas` VALUES ('60', '12', '4', '2021-01-11 13:54:43', '2021-01-11 13:54:43', null);
+INSERT INTO `menu_role_kelas` VALUES ('61', '13', '4', '2021-01-11 13:54:43', '2021-01-11 13:54:43', null);
+INSERT INTO `menu_role_kelas` VALUES ('62', '14', '4', '2021-01-11 13:54:43', '2021-01-11 13:54:43', null);
+INSERT INTO `menu_role_kelas` VALUES ('63', '15', '4', '2021-01-11 13:54:43', '2021-01-11 13:54:43', null);
+INSERT INTO `menu_role_kelas` VALUES ('64', '16', '4', '2021-01-11 13:54:43', '2021-01-11 13:54:43', null);
+INSERT INTO `menu_role_kelas` VALUES ('65', '1', '5', '2021-01-11 13:54:55', '2021-01-11 13:54:55', null);
+INSERT INTO `menu_role_kelas` VALUES ('66', '2', '5', '2021-01-11 13:54:55', '2021-01-11 13:54:55', null);
+INSERT INTO `menu_role_kelas` VALUES ('67', '3', '5', '2021-01-11 13:54:55', '2021-01-11 13:54:55', null);
+INSERT INTO `menu_role_kelas` VALUES ('68', '4', '5', '2021-01-11 13:54:55', '2021-01-11 13:54:55', null);
+INSERT INTO `menu_role_kelas` VALUES ('69', '5', '5', '2021-01-11 13:54:55', '2021-01-11 13:54:55', null);
+INSERT INTO `menu_role_kelas` VALUES ('70', '6', '5', '2021-01-11 13:54:55', '2021-01-11 13:54:55', null);
+INSERT INTO `menu_role_kelas` VALUES ('71', '7', '5', '2021-01-11 13:54:55', '2021-01-11 13:54:55', null);
+INSERT INTO `menu_role_kelas` VALUES ('72', '8', '5', '2021-01-11 13:54:55', '2021-01-11 13:54:55', null);
+INSERT INTO `menu_role_kelas` VALUES ('73', '9', '5', '2021-01-11 13:54:55', '2021-01-11 13:54:55', null);
+INSERT INTO `menu_role_kelas` VALUES ('74', '10', '5', '2021-01-11 13:54:55', '2021-01-11 13:54:55', null);
+INSERT INTO `menu_role_kelas` VALUES ('75', '11', '5', '2021-01-11 13:54:55', '2021-01-11 13:54:55', null);
+INSERT INTO `menu_role_kelas` VALUES ('76', '12', '5', '2021-01-11 13:54:55', '2021-01-11 13:54:55', null);
+INSERT INTO `menu_role_kelas` VALUES ('77', '13', '5', '2021-01-11 13:54:55', '2021-01-11 13:54:55', null);
+INSERT INTO `menu_role_kelas` VALUES ('78', '14', '5', '2021-01-11 13:54:55', '2021-01-11 13:54:55', null);
+INSERT INTO `menu_role_kelas` VALUES ('79', '15', '5', '2021-01-11 13:54:55', '2021-01-11 13:54:55', null);
+INSERT INTO `menu_role_kelas` VALUES ('80', '16', '5', '2021-01-11 13:54:55', '2021-01-11 13:54:55', null);
 
 -- ----------------------------
 -- Table structure for migrations
