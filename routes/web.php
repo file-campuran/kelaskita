@@ -14,7 +14,7 @@
 Route::get('/', 'Auth\AuthController@loginView')->name('login');
 Route::post('/', 'Auth\AuthController@login')->name('loginPost');
 
-Route::group(['middleware' => ['auth', 'addmenuroles']], function () {
+Route::group(['middleware' => ['auth', 'addmenuroles', 'addmenuroles2']], function () {
     Route::get('/logout', 'Auth\AuthController@logout')->name('logout');
     Route::get('/dashboard', 'Dashboard\DashboardController@dataGet');
 
@@ -23,6 +23,11 @@ Route::group(['middleware' => ['auth', 'addmenuroles']], function () {
     Route::get('/matapelajaran/ajax', 'Teacher\MapelController@getDataMapel');
     Route::get('/materi', 'Teacher\MateriController@materiGet');
     Route::get('/absen', 'Teacher\AbsenController@absenGet');
+
+        //MASUK KELAS
+        Route::get('/kelas', 'Kelas\KelasController@KelasGet');
+        Route::get('/video_conference', 'Kelas\VideoConferenceController@VideoConferenceGet');
+
 
     //PROFILE
     Route::get('/profile', 'Profile\ProfileController@ProfileGet');
