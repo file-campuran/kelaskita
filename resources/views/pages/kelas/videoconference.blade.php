@@ -15,7 +15,7 @@
 
 <div class="alert alert-primary " role="alert">
   <h4 class="alert-heading">Info!</h4>
-  <p>E-Meet Video Conference dalam Kubelajar.ID memungkinkan Anda melakukan virtual meeting dengan seluruh Siswa yang tergabung dalam kelas secara Gratis dan tanpa batasan waktu</p>
+  <p>E-Meet Video Conference dalam KelasKITA memungkinkan Anda melakukan virtual meeting dengan seluruh Siswa yang tergabung dalam kelas secara Gratis dan tanpa batasan waktu</p>
 </div>
 
 <div class="row">
