@@ -11,6 +11,13 @@
   </div>
   <div class="sidebar-body">
     <ul class="nav">
+      <li class="nav-item nav-category">Main</li>
+      <li class="nav-item {{ active_class(['/']) }}">
+        <a href="{{ url('/dashboard') }}" class="nav-link">
+          <i class="link-icon" data-feather="box"></i>
+          <span class="link-title">Dashboard</span>
+        </a>
+      </li>
       @foreach (session('menus') as $menu)
         @if (count($menu['sub_menu']) > 0)
           <li class="nav-item nav-category">{{ $menu['parent_name'] }}</li>
