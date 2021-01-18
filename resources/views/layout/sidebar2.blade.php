@@ -18,7 +18,7 @@
           <span class="link-title">Dashboard</span>
         </a>
       </li>
-      @foreach (session('menus') as $menu)
+      @foreach (session('menus2') as $menu)
         @if (count($menu['sub_menu']) > 0)
           <li class="nav-item nav-category">{{ $menu['parent_name'] }}</li>
             @foreach ($menu['sub_menu'] as $sub)

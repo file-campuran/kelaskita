@@ -30,10 +30,10 @@
   <script src="{{ asset('assets/js/spinner.js') }}"></script>
 
   <div class="main-wrapper" id="app">
-    @if (Request::path() == 'kelas');
-     @include('layout.sidebar2');
+    @if (Request::segment(1) == 'kelas')
+     @include('layout.sidebar2')
     @else
-      @include('layout.sidebar');
+      @include('layout.sidebar')
     @endif    
     <div class="page-wrapper">
       @include('layout.header')

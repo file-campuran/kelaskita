@@ -22,18 +22,18 @@ class AddMenuRoles2
         // get user data
 
         // get menu based on role_id
-        $menus = Dashboard2::getMenu($role_id);
+        $menus2 = Dashboard2::getMenu($role_id);
 
-        foreach($menus as $menu){
+        foreach($menus2 as $menu){
             if($menu->status == 3) $singles[] = $menu;
             if($menu->status == 2) $parents[] = $menu;
             if($menu->status == 1) $subs[]    = $menu;
         }
         
-        unset($menus);
+        unset($menus2);
         if(isset($singles)){
 			foreach($singles as $single){
-            $menus[]  = [
+            $menus2[]  = [
                 'parent_code' => $single->parent_code,
                 'parent_icon' => $single->icon,
                 'parent_name' => $single->name,
@@ -53,7 +53,7 @@ class AddMenuRoles2
                 }
             }
 
-            $menus[]  = [
+            $menus2[]  = [
                 'parent_code' => $parent->parent_code,
                 'parent_icon' => $parent->icon,
                 'parent_name' => $parent->name,
@@ -62,7 +62,7 @@ class AddMenuRoles2
             unset($childs);
         }
         
-        session(['menus' => @$menus]);
+        session(['menus2' => @$menus2]);
         return $next($request);
     }
 }
