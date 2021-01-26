@@ -30,10 +30,12 @@
   </div>
   <div class="alert alert-primary " role="alert">
     <h4 class="alert-heading">Info!</h4>
-    <p>Tahun Ajaran 2020/2021 - Semester Genap</p>
+    <p>Tahun Ajaran {{ $showSemester->tahun_ajaran }} - Semester {{ $showSemester->nama }}</p>
   </div>
   <div class="row profile-body">  
+
     <!-- middle wrapper start -->
+    @foreach($showMataPelajaran as $data_mapel)
     <div class="col-4">
       <div class="row">
         <div class="col-md-12 grid-margin">
@@ -42,14 +44,14 @@
               <div class="d-flex align-items-center justify-content-between">
                 <div class="d-flex align-items-center">
                   <div class="ml-2">
-                    <p>IPS X-Ips-1_MIPA Biologi</p>
-                    <p class="tx-11 text-muted">Mata Pelajaran IPS Biologi Kelas Kelas X</p>
+                    <p>{{ $data_mapel->nama_kelas }}</p>
+                    <p class="tx-11 text-muted">Mata Pelajaran {{ $data_mapel->mata_pelajaran }} kelas {{ $data_mapel->kelas }}</p>
                   </div>
                 </div>
               </div>
             </div>
             <div class="card-body text-center">
-              <p class="mb-3 tx-14">36 Siswa | Max KD : 9 | KKM : 75</p>
+              <p class="mb-3 tx-14">36 Siswa | Max KD : 9 | KKM : {{ $data_mapel->kkm }}</p>
             </div>
             <div class="card-footer">
               <div class="d-flex post-actions">
@@ -63,67 +65,9 @@
         </div>
       </div>
     </div>
-
-    <div class="col-4">
-      <div class="row">
-        <div class="col-md-12 grid-margin">
-          <div class="card rounded">
-            <div class="card-header">
-              <div class="d-flex align-items-center justify-content-between">
-                <div class="d-flex align-items-center">
-                  <div class="ml-2">
-                    <p>MIPA X-MIPA-1_MIPA Fisika	</p>
-                    <p class="tx-11 text-muted">Mata Pelajaran MIPA Fisika Kelas Kelas X</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="card-body text-center">
-              <p class="mb-3 tx-14">36 Siswa | Max KD : 9 | KKM : 75</p>
-            </div>
-            <div class="card-footer">
-              <div class="d-flex post-actions">
-                <a href="javascript:;" class="d-flex align-items-center text-muted">
-                  <i class="icon-md" data-feather="inbox"></i>
-                  <p class="d-none d-md-block ml-2">Masuk</p>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-4">
-      <div class="row">
-        <div class="col-md-12 grid-margin">
-          <div class="card rounded">
-            <div class="card-header">
-              <div class="d-flex align-items-center justify-content-between">
-                <div class="d-flex align-items-center">
-                  <div class="ml-2">
-                    <p>MIPA X-MIPA-2_MIPA Fisika	</p>
-                    <p class="tx-11 text-muted">Mata Pelajaran MIPA Fisika Kelas Kelas X</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="card-body text-center">
-              <p class="mb-3 tx-14">36 Siswa | Max KD : 9 | KKM : 75</p>
-            </div>
-            <div class="card-footer">
-              <div class="d-flex post-actions">
-                <a href="javascript:;" class="d-flex align-items-center text-muted">
-                  <i class="icon-md" data-feather="inbox"></i>
-                  <p class="d-none d-md-block ml-2">Masuk</p>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    @endforeach 
     <!-- middle wrapper end -->
+
   </div>
 </div>
 @endsection

@@ -6,6 +6,9 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
 use App\Auth;
 use App\Dashboard;
+use App\Models\MasterSemester;
+use App\Models\UserDetail;
+use App\Models\MasterJadwalPelajaran;
 use DB;
 class DashboardController extends BaseController
 {
@@ -54,9 +57,14 @@ class DashboardController extends BaseController
             ];
             unset($childs);
         }
+
+        
         
         session(['menus' => @$menus]);
-        return view('dashboard');
+        return view('dashboard',[
+            'showSemester'      => MasterSemester::where('status',1)->first(),
+            'showMataPelajaran' => MasterJadwalPelajaran::get(),
+        ]);
     }
 
     public function reg(){

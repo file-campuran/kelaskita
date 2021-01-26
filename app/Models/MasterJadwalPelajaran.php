@@ -15,6 +15,7 @@ class MasterJadwalPelajaran extends Model
         'kelas',
         'mata_pelajaran',
         'kkm',
-        'created_at'
+        'created_at',
+        'updated_at'
     ];
 }

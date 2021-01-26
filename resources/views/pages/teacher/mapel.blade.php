@@ -20,7 +20,7 @@
           <h6 class="card-title mb-0">Mata Pelajaran</h6>
           <div class="dropdown mb-2">
             <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#TambahData">Tambah Data</button>
-            <button type="button" class="btn btn-outline-danger" onclick="showSwal('passing-parameter-execute-cancel')">Hapus</button>
+            <button type="button" class="btn btn-outline-danger" onclick="deleteMapel()">Hapus</button>
           </div>
         </div>
         <div class="table-responsive">
@@ -55,13 +55,13 @@
         </button>
       </div>
       <div class="modal-body">
-        <form>
+        <form id="inser_data" method="POST" enctype="multipart/form-data">
           <div class="form-group">
             <label for="recipient-name">Pilih Kelas:</label>
             <select name="kelas" class="form-control form-control-sm mb-3">
               <option selected>Open this select menu</option>
               @foreach($showKelas as $value)
-              <option value="{{ $value->id }}">{{ $value->kelas }}</option>
+              <option value="{{ $value->kode }}">{{ $value->kelas }}</option>
               @endforeach
             </select>
           </div>
@@ -70,7 +70,7 @@
             <select name="jurusan" class="form-control form-control-sm mb-3">
               <option selected>Open this select menu</option>
               @foreach($showJurusan as $value)
-              <option value="{{ $value->id }}">{{ $value->jurusan }}</option>
+              <option value="{{ $value->jurusan }}">{{ $value->jurusan }}</option>
               @endforeach
             </select>
           </div>
@@ -79,25 +79,21 @@
             <select name="mata_pelajaran" class="form-control form-control-sm mb-3">
               <option selected>Open this select menu</option>
               @foreach($showMapel as $value)
-              <option value="{{ $value->id }}">{{ $value->nama_mapel }}</option>
+              <option value="{{ $value->nama_mapel }}">{{ $value->nama_mapel }}</option>
               @endforeach
             </select>
           </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
+            <button type="submit" class="btn btn-success">Simpan</button>
+          </div>
+          @csrf
         </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
-        <button type="button" class="btn btn-success">Simpan</button>
       </div>
     </div>
   </div>
 </div>
 @endsection
-
-@push('plugin-scripts')
-  <script src="{{ asset('assets/plugins/datatables-net/jquery.dataTables.js') }}"></script>
-  <script src="{{ asset('assets/plugins/datatables-net-bs4/dataTables.bootstrap4.js') }}"></script>
-@endpush
 
 @push('custom-scripts')
   <script src="{{ asset('assets/js/data-table.js') }}"></script>
@@ -145,5 +141,83 @@
                 processing: 'Loading...'},
         })        
     });
+
+    function deleteMapel(id) {
+        var data_id = []
+        if (id != null) {
+            data_id.push(id)
+        } else {
+          $("input:checkbox[class=checkbox]:checked").each(function () {
+            data_id.push($(this).val());
+          });
+        }
+        swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.dismiss == "cancel") {
+                return false 
+            }
+            if (result) {
+              $.ajax({
+                url: '{{ url('') }}/matapelajaran/delete',
+                  type: "post",
+                  data: {
+                    "_token": "{{ csrf_token() }}",
+                    data: data_id
+                  },
+                  dataType: 'json',
+                  success: function(res){
+                    if (res.success) {
+                      swal.fire('Deleted!', '', 'success');
+                      $('#dataMapel').DataTable().ajax.reload();
+                    }
+                  }
+              })
+            }
+        })
+    }
+
+    $('#inser_data').on('submit',function(e) {
+        e.preventDefault();
+        $.ajax({
+            url: '{{url('')}}/matapelajaran/add',
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            dataType: "json",
+            enctype: 'multipart/form-data',
+            type: "POST",
+            data: new FormData(this),
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                if(response.success){
+                    $('#kelas').val('');
+                    $('#jurusan').val('');
+                    $('#mata_pelajaran').val('');
+                    swal.fire(response.message, '', 'success');
+                }else{
+                    $('#kelas').val('');
+                    $('#jurusan').val('');
+                    $('#mata_pelajaran').val('');
+                    swal.fire(response.message, '', 'error');
+                }
+                $('#TambahData').modal('hide');
+                $('#dataMapel').DataTable().ajax.reload();
+            },
+            error: function (response) {
+                swal.fire(response.message, '', 'error');
+                $('#kelas').val('');
+                $('#jurusan').val('');
+                $('#mata_pelajaran').val('');
+            }
+        });
+    })
 </script>
 @endpush

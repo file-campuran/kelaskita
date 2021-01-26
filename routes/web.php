@@ -20,6 +20,8 @@ Route::group(['middleware' => ['auth', 'addmenuroles', 'addmenuroles2']], functi
 
     //TEACHER
     Route::get('/matapelajaran', 'Teacher\MapelController@mapelGet');
+    Route::post('/matapelajaran/add', 'Teacher\MapelController@addEMapel')->name('add_matapelajaran');
+    Route::post('/matapelajaran/delete', 'Teacher\MapelController@deleteMapel')->name('delete_matapelajaran');
     Route::get('/matapelajaran/ajax', 'Teacher\MapelController@getDataMapel');
     Route::get('/materi', 'Teacher\MateriController@materiGet');
     Route::get('/absen', 'Teacher\AbsenController@absenGet');

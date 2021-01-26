@@ -1,7 +1,7 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : Localhost
+Source Server         : LOCALHOST
 Source Server Version : 50505
 Source Host           : localhost:3306
 Source Database       : vian_kelaskita
@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2021-01-11 14:40:15
+Date: 2021-01-26 15:27:59
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -69,15 +69,13 @@ CREATE TABLE `master_jadwalpelajaran` (
   `mata_pelajaran` varchar(50) DEFAULT '',
   `kkm` int(5) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of master_jadwalpelajaran
 -- ----------------------------
-INSERT INTO `master_jadwalpelajaran` VALUES ('1', 'IPS X-Ips-1_MIPA Biologi', 'Erni Wiyanti, S.Pd., M.M.	', 'Kelas X	', 'IPS X-IPS-1', 'IPS Biologi', '75', null);
-INSERT INTO `master_jadwalpelajaran` VALUES ('2', 'MIPA X-MIPA-1_MIPA Fisika', 'Erni Wiyanti, S.Pd., M.M.	', 'Kelas X	', 'MIPA X-MIPA-1	', 'MIPA Fisika	', '75', null);
-INSERT INTO `master_jadwalpelajaran` VALUES ('3', 'MIPA X-MIPA-2_MIPA Fisika', 'Erni Wiyanti, S.Pd., M.M.	', 'Kelas X	', 'MIPA X-MIPA-2	', 'MIPA Fisika	', '75', null);
 
 -- ----------------------------
 -- Table structure for master_jurusan
@@ -101,6 +99,7 @@ INSERT INTO `master_jurusan` VALUES ('2', 'IPS');
 DROP TABLE IF EXISTS `master_kelas`;
 CREATE TABLE `master_kelas` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `kode` varchar(5) DEFAULT NULL,
   `kelas` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
@@ -108,9 +107,9 @@ CREATE TABLE `master_kelas` (
 -- ----------------------------
 -- Records of master_kelas
 -- ----------------------------
-INSERT INTO `master_kelas` VALUES ('1', 'Kelas X');
-INSERT INTO `master_kelas` VALUES ('2', 'Kelas XI');
-INSERT INTO `master_kelas` VALUES ('3', 'Kelas XII');
+INSERT INTO `master_kelas` VALUES ('1', 'X', 'Kelas X');
+INSERT INTO `master_kelas` VALUES ('2', 'XI', 'Kelas XI');
+INSERT INTO `master_kelas` VALUES ('3', 'XII', 'Kelas XII');
 
 -- ----------------------------
 -- Table structure for master_mapel
@@ -192,21 +191,21 @@ CREATE TABLE `menu_kelas` (
 -- Records of menu_kelas
 -- ----------------------------
 INSERT INTO `menu_kelas` VALUES ('1', 'Kelas', '/kelas', 'Kelas', '2', null, '1', '2021-01-11 13:54:05', '2021-01-11 13:58:19', null);
-INSERT INTO `menu_kelas` VALUES ('2', 'Kelas', '/chat', 'Chat', '1', 'message-square', '1', '2021-01-11 13:54:05', '2021-01-11 13:58:00', null);
-INSERT INTO `menu_kelas` VALUES ('3', 'Kelas', '/video_conference', 'Video Conference', '1', 'video', '2', '2021-01-11 13:54:05', '2021-01-11 13:58:48', null);
-INSERT INTO `menu_kelas` VALUES ('4', 'Kelas', '/absensi_kelas', 'Absensi Kelas', '1', 'users', '3', '2021-01-11 13:54:05', '2021-01-11 14:00:12', null);
-INSERT INTO `menu_kelas` VALUES ('5', 'Kelas', '/kompetensi_dasar', 'Kompetensi Dasar', '1', 'calendar', '4', '2021-01-11 13:54:05', '2021-01-11 14:02:52', null);
-INSERT INTO `menu_kelas` VALUES ('6', 'Kelas', '/rpp', 'RPP', '1', 'align-right', '5', '2021-01-11 13:54:05', '2021-01-11 14:02:26', null);
-INSERT INTO `menu_kelas` VALUES ('7', 'Kelas', '/kejadian_jurnal', 'Kejadian / Jurnal', '1', 'book', '6', '2021-01-11 13:54:05', '2021-01-11 14:02:35', null);
-INSERT INTO `menu_kelas` VALUES ('8', 'Kelas', '/materi_bahan_ajar', 'Materi / Bahan Ajar', '1', 'book', '7', '2021-01-11 13:54:05', '2021-01-11 14:02:37', null);
-INSERT INTO `menu_kelas` VALUES ('9', 'Kelas', '/daftar_siswa_kelas', 'Daftar Siswa Kelas', '1', 'users', '8', '2021-01-11 13:54:05', '2021-01-11 14:03:03', null);
-INSERT INTO `menu_kelas` VALUES ('10', 'Kelas', '/cbt', 'CBT', '1', 'airplay', '9', '2021-01-11 13:54:05', '2021-01-11 14:03:22', null);
-INSERT INTO `menu_kelas` VALUES ('11', 'Kelas', '/penilaian_kd3', 'Penilaian KD 3', '1', 'file-text', '10', '2021-01-11 13:54:05', '2021-01-11 14:03:38', null);
-INSERT INTO `menu_kelas` VALUES ('12', 'Kelas', '/penilaian_kd4', 'Penilaian KD 4', '1', 'file-text', '11', '2021-01-11 13:54:05', '2021-01-11 14:03:38', null);
-INSERT INTO `menu_kelas` VALUES ('13', 'Kelas', '/penilaian_semester', 'Penilaian Semester', '1', 'file-text', '12', '2021-01-11 13:54:05', '2021-01-11 14:03:40', null);
-INSERT INTO `menu_kelas` VALUES ('14', 'Kelas', '/rekap_rapor', 'Rekap Rapor', '1', 'file-text', '13', '2021-01-11 13:54:05', '2021-01-11 14:03:42', null);
-INSERT INTO `menu_kelas` VALUES ('15', 'Kelas', '/monitor_aktifitas', 'Monitor Aktifitas', '1', 'radio', '14', '2021-01-11 13:54:05', '2021-01-11 14:03:50', null);
-INSERT INTO `menu_kelas` VALUES ('16', 'Kelas', '/pengaturan_kelas', 'Pengaturan Kelas', '1', 'settings', '15', '2021-01-11 13:54:05', '2021-01-11 14:03:55', null);
+INSERT INTO `menu_kelas` VALUES ('2', 'Kelas', '/kelas/chat', 'Chat', '1', 'message-square', '1', '2021-01-11 13:54:05', '2021-01-18 11:53:28', null);
+INSERT INTO `menu_kelas` VALUES ('3', 'Kelas', '/kelas/video_conference', 'Video Conference', '1', 'video', '2', '2021-01-11 13:54:05', '2021-01-18 11:53:31', null);
+INSERT INTO `menu_kelas` VALUES ('4', 'Kelas', '/kelas/absensi_kelas', 'Absensi Kelas', '1', 'users', '3', '2021-01-11 13:54:05', '2021-01-18 11:53:33', null);
+INSERT INTO `menu_kelas` VALUES ('5', 'Kelas', '/kelas/kompetensi_dasar', 'Kompetensi Dasar', '1', 'calendar', '4', '2021-01-11 13:54:05', '2021-01-18 11:53:35', null);
+INSERT INTO `menu_kelas` VALUES ('6', 'Kelas', '/kelas/rpp', 'RPP', '1', 'align-right', '5', '2021-01-11 13:54:05', '2021-01-18 11:53:38', null);
+INSERT INTO `menu_kelas` VALUES ('7', 'Kelas', '/kelas/kejadian_jurnal', 'Kejadian / Jurnal', '1', 'book', '6', '2021-01-11 13:54:05', '2021-01-18 11:53:40', null);
+INSERT INTO `menu_kelas` VALUES ('8', 'Kelas', '/kelas/materi_bahan_ajar', 'Materi / Bahan Ajar', '1', 'book', '7', '2021-01-11 13:54:05', '2021-01-18 11:53:45', null);
+INSERT INTO `menu_kelas` VALUES ('9', 'Kelas', '/kelas/daftar_siswa_kelas', 'Daftar Siswa Kelas', '1', 'users', '8', '2021-01-11 13:54:05', '2021-01-18 11:53:47', null);
+INSERT INTO `menu_kelas` VALUES ('10', 'Kelas', '/kelas/cbt', 'CBT', '1', 'airplay', '9', '2021-01-11 13:54:05', '2021-01-18 11:53:48', null);
+INSERT INTO `menu_kelas` VALUES ('11', 'Kelas', '/kelas/penilaian_kd3', 'Penilaian KD 3', '1', 'file-text', '10', '2021-01-11 13:54:05', '2021-01-18 11:53:50', null);
+INSERT INTO `menu_kelas` VALUES ('12', 'Kelas', '/kelas/penilaian_kd4', 'Penilaian KD 4', '1', 'file-text', '11', '2021-01-11 13:54:05', '2021-01-18 11:53:52', null);
+INSERT INTO `menu_kelas` VALUES ('13', 'Kelas', '/kelas/penilaian_semester', 'Penilaian Semester', '1', 'file-text', '12', '2021-01-11 13:54:05', '2021-01-18 11:53:54', null);
+INSERT INTO `menu_kelas` VALUES ('14', 'Kelas', '/kelas/rekap_rapor', 'Rekap Rapor', '1', 'file-text', '13', '2021-01-11 13:54:05', '2021-01-18 11:53:56', null);
+INSERT INTO `menu_kelas` VALUES ('15', 'Kelas', '/kelas/monitor_aktifitas', 'Monitor Aktifitas', '1', 'radio', '14', '2021-01-11 13:54:05', '2021-01-18 11:53:57', null);
+INSERT INTO `menu_kelas` VALUES ('16', 'Kelas', '/kelas/pengaturan_kelas', 'Pengaturan Kelas', '1', 'settings', '15', '2021-01-11 13:54:05', '2021-01-18 11:53:59', null);
 
 -- ----------------------------
 -- Table structure for menu_role
